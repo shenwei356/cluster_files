@@ -1,0 +1,46 @@
+Read1 before filtering:
+total reads: 5
+total bases: 750
+Q20 bases: 742(98.9333%)
+Q30 bases: 721(96.1333%)
+
+Read2 before filtering:
+total reads: 5
+total bases: 750
+Q20 bases: 712(94.9333%)
+Q30 bases: 654(87.2%)
+
+Read1 after filtering:
+total reads: 5
+total bases: 750
+Q20 bases: 742(98.9333%)
+Q30 bases: 721(96.1333%)
+
+Read2 after filtering:
+total reads: 5
+total bases: 750
+Q20 bases: 712(94.9333%)
+Q30 bases: 654(87.2%)
+
+Filtering result:
+reads passed filter: 10
+reads failed due to low quality: 0
+reads failed due to too many N: 0
+reads failed due to too short: 0
+reads failed due to low complexity: 0
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate: 20%
+
+Insert size peak (evaluated by paired-end reads): 246
+
+JSON report: raw.cluster.fastp/A-1/A-1.fastp.json
+HTML report: raw.cluster.fastp/A-1/A-1.fastp.html
+
+fastp -i raw.cluster/A-1/A-1_1.fq.gz -I raw.cluster/A-1/A-1_2.fq.gz -o raw.cluster.fastp/A-1/A-1_1.fq.gz -O raw.cluster.fastp/A-1/A-1_2.fq.gz --unpaired1 raw.cluster.fastp/A-1/A-1_1.unpaired.fq.gz --unpaired2 raw.cluster.fastp/A-1/A-1_2.unpaired.fq.gz -l 70 -q 25 -W 2 -M 25 -3 25 --thread 16 --trim_poly_g --poly_g_min_len 5 --low_complexity_filter --html raw.cluster.fastp/A-1/A-1.fastp.html --json raw.cluster.fastp/A-1/A-1.fastp.json 
+fastp v0.23.2, time used: 0 seconds
+
+real	0m0.486s
+user	0m0.090s
+sys	0m0.397s
