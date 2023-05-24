@@ -1,13 +1,16 @@
 # cluster_files
 
 `cluster_files` clusters files into multiple directories by creating symbolic links or moving files.
+
 It is helpful in bioinformatic analyses, where multiple datasets are analysed in a series of steps, each with one or more methods.
 
 ## Features
 
 - **Safe**. Creating symbolic links keeps the original files untouched.
-- **Convenient** for parallel processing of multiple datasets with the same input file structure
-- Each step is separately performed in its directory
+- **Convenient** for parallel processing of multiple datasets with the same input file structure.
+    -  You can use [rush](https://github.com/shenwei356/rush) or [parallel](https://www.gnu.org/software/parallel/) for local batch processing,
+    -  and [easy_qsub](https://github.com/shenwei356/easy_qsub) or [easy_sbatch](https://github.com/shenwei356/easy_sbatch) for batch submitting jobs to a computer cluster.
+- Each analysis step can be separately performed in its directory
     - **Clear** organization
     - Avoid conflicts
     - Supporting simultaneous analyses with multiple methods
@@ -118,7 +121,7 @@ It is helpful in bioinformatic analyses, where multiple datasets are analysed in
         t=raw.cluster.fastp.megahit
 
         # link the paired reads
-        cluster_files -p '(.+)_[12].fq.gz$' $s -o $t
+        cluster_files -p '(.+)_[12].fq.gz$'          $s -o $t
         # link the unpaired reads
         cluster_files -p '(.+)_[12].unpaired.fq.gz$' $s -o $t
 
@@ -171,9 +174,11 @@ It is helpful in bioinformatic analyses, where multiple datasets are analysed in
         t=raw.cluster.fastp.xxxx
 
         # link the paired reads
-        cluster_files -p '(.+)_[12].fq.gz$' $s -o $t
+        cluster_files -p '(.+)_[12].fq.gz$'          $s -o $t
         # link the unpaired reads
         cluster_files -p '(.+)_[12].unpaired.fq.gz$' $s -o $t
+
+        # do somethings
 
 
 1. All directories.
