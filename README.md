@@ -202,7 +202,7 @@ into any directory included in environment `PATH`, e.g `/usr/local/bin`.
 Or
 
     git clone https://github.com/shenwei356/cluster_files.git
-    cd easy_qsub
+    cd cluster_files
 
     mkdir -p $HOME/bin; cp cluster_files /usr/local/bin
 
