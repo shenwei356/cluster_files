@@ -1,13 +1,14 @@
 # cluster_files
 
 `cluster_files` clusters files into multiple directories by creating symbolic links or moving files.
+It is helpful in bioinformatic analyses, where multiple datasets are analysed in a series of steps, each with one or more methods.
 
 ## Features
 
-- Safe, creating symbolic links keeps the original files untouched.
-- Convenient for parallel processing of multiple datasets with the same input file structure
+- **Safe**. Creating symbolic links keeps the original files untouched.
+- **Convenient** for parallel processing of multiple datasets with the same input file structure
 - Each step is separately performed in its directory
-    - Clear organization
+    - **Clear** organization
     - Avoid conflicts
     - Supporting simultaneous analyses with multiple methods
 
