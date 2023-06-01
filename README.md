@@ -4,6 +4,16 @@
 
 It is helpful in bioinformatic analyses, where multiple datasets are analysed in a series of steps, each with one or more methods.
 
+## Table of Contents
+
+* [Features](#features)
+* [Best practice](#best-practice)
+* [Special cases](#special-cases)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Support](#support)
+* [License](#license)
+
 ## Features
 
 - **Safe**. Creating symbolic links keeps the original files untouched.
@@ -265,7 +275,7 @@ Or
 ```
 usage: cluster_files [-h] [-o OUTDIR] [-p PATTERN] [-k] [-m] [-f] indir
 
-clustering files by regular expression (V4.0.0)
+clustering files by regular expression (v4.1.0)
 
 positional arguments:
   indir                 source directory
@@ -280,7 +290,7 @@ options:
                         "(.+?)_\d\.fq\.gz"
   -k, --keep            keep original dir structure
   -m, --mv              moving files instead of creating symbolic links
-  -f, --force           force file overwriting, i.e. deleting existed out directory
+  -f, --force           Attention: force directory overwriting, i.e. deleting existed out directory
 
 https://github.com/shenwei356/cluster_files
 ```
