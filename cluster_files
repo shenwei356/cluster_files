@@ -16,7 +16,7 @@ def parse_args():
                         format="[%(levelname)s] %(message)s")
 
     parser = argparse.ArgumentParser(
-        description='clustering files by regular expression (V4.0.0)',
+        description='clustering files by regular expression (v4.1.0)',
         epilog="https://github.com/shenwei356/cluster_files")
 
     parser.add_argument('indir', type=str, help='source directory')
@@ -44,7 +44,7 @@ def parse_args():
         "-f",
         "--force",
         action="store_true",
-        help='force file overwriting, i.e. deleting existed out directory')
+        help='Attention: force directory overwriting, i.e. deleting existed out directory')
 
     args = parser.parse_args()
 
@@ -179,9 +179,28 @@ if __name__ == '__main__':
                     shutil.move(file, outdir)
                 else:  # creating symbolic links
                     link_name = os.path.join(outdir, os.path.basename(file))
-                    if os.path.exists(link_name):
-                        os.unlink(link_name)
-                        logging.info("update the link file: {}".format(link_name))
-
                     source = os.path.relpath(os.path.abspath(file), outdir)
+
+                    flag = False
+                    if os.path.exists(link_name): # it returns False for broken symbolic links
+                        logging.info("update an existed symbolic link: {} -> {}".format(link_name, source))
+                        flag = True
+
+                    # since os.path.exists returns False for broken symbolic links,
+                    # we decide to remove the link_name every time
+                    flag2 = False
+                    try:
+                        os.unlink(link_name)
+                    except FileNotFoundError:
+                        flag2 = True
+                        pass
+
                     os.symlink(source, link_name)
+                    
+                    if flag:
+                        pass
+                    else: # might be a broken symlink
+                        if flag2: # not existed before
+                            logging.info("create a new symbolic link: {} -> {}".format(link_name, source))
+                        else: # it indeed deleted a symlink
+                            logging.info("update a broken symbolic link: {} -> {}".format(link_name, source))

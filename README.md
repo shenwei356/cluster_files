@@ -190,6 +190,58 @@ It is helpful in bioinformatic analyses, where multiple datasets are analysed in
         raw.cluster.fastp.megahit
         raw.cluster.fastp.xxxx
 
+## Special cases
+
+1. You may need to change the file names of some original data files after performing some analysis steps.
+   It's easy to batch rename files and symbolic links with [`brename`](https://github.com/shenwei356/brename),
+   but the symbolic links will be broken.
+   Let's just re-run `cluster_files` (v4.1.0 or later versions) with the same options and files.
+
+        $ tree t/
+        t/
+        ├── A_1.fq.gz
+        ├── A_2.fq.gz
+        ├── B_1.fq.gz
+        └── B_2.fq.gz
+
+        $ cluster_files -p '(.+)_[12].fq.gz$' t
+        [INFO] create a new directory: t.cluster/B
+        [INFO] create a new symbolic link: t.cluster/B/B_2.fq.gz -> ../../t/B_2.fq.gz
+        [INFO] create a new symbolic link: t.cluster/B/B_1.fq.gz -> ../../t/B_1.fq.gz
+        [INFO] create a new directory: t.cluster/A
+        [INFO] create a new symbolic link: t.cluster/A/A_2.fq.gz -> ../../t/A_2.fq.gz
+        [INFO] create a new symbolic link: t.cluster/A/A_1.fq.gz -> ../../t/A_1.fq.gz
+
+        # ---------------------------------------------------------------------------
+        # well, I have to rename B to C
+        $ brename -p B -r C -R -D t t.cluster/
+
+        $ tree t t.cluster/
+        t
+        ├── A_1.fq.gz
+        ├── A_2.fq.gz
+        ├── C_1.fq.gz
+        └── C_2.fq.gz
+        t.cluster/
+        ├── A
+        │   ├── A_1.fq.gz -> ../../t/A_1.fq.gz
+        │   └── A_2.fq.gz -> ../../t/A_2.fq.gz
+        └── C
+            ├── C_1.fq.gz -> ../../t/B_1.fq.gz         # broken symlinks
+            └── C_2.fq.gz -> ../../t/B_2.fq.gz         # broken symlinks
+
+        # ---------------------------------------------------------------------------
+        # just re-run cluster_files
+
+        $ cluster_files -p '(.+)_[12].fq.gz$' t
+        [INFO] update existed directory: t.cluster
+        [INFO] directory existed: t.cluster/C
+        [INFO] update a broken symbolic link: t.cluster/C/C_2.fq.gz -> ../../t/C_2.fq.gz
+        [INFO] update a broken symbolic link: t.cluster/C/C_1.fq.gz -> ../../t/C_1.fq.gz
+        [INFO] directory existed: t.cluster/A
+        [INFO] update an existed symbolic link: t.cluster/A/A_2.fq.gz -> ../../t/A_2.fq.gz
+        [INFO] update an existed symbolic link: t.cluster/A/A_1.fq.gz -> ../../t/A_1.fq.gz
+
 
 ## Installation
 
