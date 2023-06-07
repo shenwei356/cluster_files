@@ -1,3 +1,7 @@
+## v4.1.2
+
+- fix bug of -k/--keep
+
 ## v4.1.1
 
 - fix python 2/3 compatibility

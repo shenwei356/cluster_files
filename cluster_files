@@ -16,7 +16,7 @@ def parse_args():
                         format="[%(levelname)s] %(message)s")
 
     parser = argparse.ArgumentParser(
-        description='clustering files by regular expression (v4.1.1)',
+        description='clustering files by regular expression (v4.1.2)',
         epilog="https://github.com/shenwei356/cluster_files")
 
     parser.add_argument('indir', type=str, help='source directory')
@@ -151,9 +151,9 @@ if __name__ == '__main__':
     for dir, clusters, files in targets:
         for cluster in clusters:
             if args.keep:
-                splits = os.path.split(dir)
+                splits = dir.split(os.sep)
                 if not splits[0] == '':
-                    newdir = os.path.join(splits[1:])[0]
+                    newdir = os.path.join(*splits[1:])
                 else:  # no subdir in args.indir
                     newdir = ''
             else:
