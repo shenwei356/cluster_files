@@ -16,7 +16,7 @@ def parse_args():
                         format="[%(levelname)s] %(message)s")
 
     parser = argparse.ArgumentParser(
-        description='clustering files by regular expression (v4.1.0)',
+        description='clustering files by regular expression (v4.1.1)',
         epilog="https://github.com/shenwei356/cluster_files")
 
     parser.add_argument('indir', type=str, help='source directory')
@@ -183,7 +183,7 @@ if __name__ == '__main__':
 
                     flag = False
                     if os.path.exists(link_name): # it returns False for broken symbolic links
-                        logging.info("update an existed symbolic link: {} -> {}".format(link_name, source))
+                        logging.info("update the existed symbolic link: {} -> {}".format(link_name, source))
                         flag = True
 
                     # since os.path.exists returns False for broken symbolic links,
@@ -191,9 +191,8 @@ if __name__ == '__main__':
                     flag2 = False
                     try:
                         os.unlink(link_name)
-                    except FileNotFoundError:
+                    except (IOError, OSError): # remove a inexistent file
                         flag2 = True
-                        pass
 
                     os.symlink(source, link_name)
                     
@@ -203,4 +202,4 @@ if __name__ == '__main__':
                         if flag2: # not existed before
                             logging.info("create a new symbolic link: {} -> {}".format(link_name, source))
                         else: # it indeed deleted a symlink
-                            logging.info("update a broken symbolic link: {} -> {}".format(link_name, source))
+                            logging.info("fix the broken symbolic link: {} -> {}".format(link_name, source))

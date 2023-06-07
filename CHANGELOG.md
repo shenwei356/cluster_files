@@ -1,3 +1,7 @@
+## v4.1.1
+
+- fix python 2/3 compatibility
+
 ## v4.1.0
 
 - support fixing broken links

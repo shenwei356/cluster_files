@@ -246,11 +246,11 @@ It is helpful in bioinformatic analyses, where multiple datasets are analysed in
         $ cluster_files -p '(.+)_[12].fq.gz$' t
         [INFO] update existed directory: t.cluster
         [INFO] directory existed: t.cluster/C
-        [INFO] update a broken symbolic link: t.cluster/C/C_2.fq.gz -> ../../t/C_2.fq.gz
-        [INFO] update a broken symbolic link: t.cluster/C/C_1.fq.gz -> ../../t/C_1.fq.gz
+        [INFO] fix the broken symbolic link: t.cluster/C/C_2.fq.gz -> ../../t/C_2.fq.gz
+        [INFO] fix the broken symbolic link: t.cluster/C/C_1.fq.gz -> ../../t/C_1.fq.gz
         [INFO] directory existed: t.cluster/A
-        [INFO] update an existed symbolic link: t.cluster/A/A_2.fq.gz -> ../../t/A_2.fq.gz
-        [INFO] update an existed symbolic link: t.cluster/A/A_1.fq.gz -> ../../t/A_1.fq.gz
+        [INFO] update the existed symbolic link: t.cluster/A/A_2.fq.gz -> ../../t/A_2.fq.gz
+        [INFO] update the existed symbolic link: t.cluster/A/A_1.fq.gz -> ../../t/A_1.fq.gz
 
 
 ## Installation
