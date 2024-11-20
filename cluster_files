@@ -31,7 +31,7 @@ def parse_args():
         help='pattern (regular expression) of files in indir. ' +
         'if not given, it will be the longest common substring of the files.' +
         'GROUP (parenthese) should be in the regular expression. ' +
-        'Captured group will be the cluster name. e.g. "(.+?)_\d\.fq\.gz"')
+        'Captured group will be the cluster name. e.g. "(.+?)_\\d\\.fq\\.gz"')
     parser.add_argument('-k',
                         '--keep',
                         action='store_true',
@@ -87,7 +87,7 @@ if __name__ == '__main__':
         if not ('(' in args.pattern and ')' in args.pattern):
             logging.error(
                 'GROUP (parenthese) should be in the regular expression. ' +
-                'Captured group will be the cluster name. e.g. "(.+?)_\d\.fq\.gz"')
+                'Captured group will be the cluster name. e.g. "(.+?)_\\d\\.fq\\.gz"')
             sys.exit(1)
 
     if sys.version_info.major == 3:
